@@ -7,7 +7,11 @@ const str = process.env.REDIS_URL;
 //const str = 'redis://redisdata:6379'
 console.log("/pages/api/incr.js: str", str);
 
-let redis = new Redis(str)
+try {
+  let redis = new Redis(str)
+} catch (e) {
+  console.log("/pages/api/incr.js: e", e);
+}
 
 
 export default async (req, res) => {
