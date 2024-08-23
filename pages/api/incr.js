@@ -1,7 +1,12 @@
 import Redis from 'ioredis'
 
 console.log("/pages/api/incr.js: process.env.REDIS_URL", process.env?.REDIS_URL ?? 'no redis url');
-let redis = new Redis(process.env.REDIS_URL)
+
+//const str = process.env.REDIS_URL;
+const str = 'redis://172.29.0.2 :6379'
+
+let redis = new Redis(str)
+
 
 export default async (req, res) => {
   const count = await redis.incr('counter')
