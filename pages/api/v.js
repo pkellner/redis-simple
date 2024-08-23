@@ -9,5 +9,5 @@ const str = process.env.REDIS_URL;
 export default async (req, res) => {
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
   await sleep(1000)
-  res.status(200).json({ str })
+  res.status(200).json({ data: str ?? "NO_REDIS_URL", time: new Date().toISOString() })
 }
