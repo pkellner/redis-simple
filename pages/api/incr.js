@@ -9,7 +9,8 @@ console.log("/pages/api/incr.js: str", str);
 
 let redis;
 try {
-  redis = new Redis(str)
+  redis = new Redis(str);
+  console.log("/pages/api/incr.js: redis", redis);
 } catch (e) {
   console.log("/pages/api/incr.js: e", e);
 }
