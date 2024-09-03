@@ -16,8 +16,8 @@ RUN npm install
 COPY . .
 
 # Determine the release version from the root of the repo
-RUN if [ -f /usr/src/baseversion ]; then \
-        RELEASEVERSION=$(($(cat /usr/src/baseversion) + 0)); \
+RUN if [ -f ./baseversion ]; then \
+        RELEASEVERSION=$(($(cat ./baseversion) + 0)); \
     else \
         RELEASEVERSION=0; \
     fi \
