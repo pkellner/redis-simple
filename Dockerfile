@@ -1,32 +1,23 @@
-FROM node:alpine
+# Use an official node runtime as a parent image
+FROM node:20-alpine
 
-# Create app directory
-RUN mkdir -p /usr/src
-WORKDIR /usr/src
+# Set the working directory
+WORKDIR /app
 
+# Copy the package.json and package-lock.json files to the working directory
+COPY package*.json ./
 
-
-# Install app dependencies
-COPY package.json /usr/src/
-COPY package-lock.json /usr/src/
+# Install the dependencies
 RUN npm install
 
-# Bundle app source
-COPY . /usr/src
+# Copy the rest of the application code to the working directory
+COPY . .
 
-# Determine the release version
-RUN if [ -f /usr/src/baseversion ]; then \
-        RELEASEVERSION=$(($(cat /usr/src/baseversion) + 0)); \
-    else \
-        RELEASEVERSION=0; \
-    fi \
-    && RELEASEDATE=$(date "+%a %b %d %T %Y") \
-    && RELEASEDATEISO=$(date -u "+%Y-%m-%dT%H:%M:%SZ") \
-    && echo "RELEASEVERSION=$RELEASEVERSION" > /usr/src/.env.production \
-    && echo "RELEASEDATE=$RELEASEDATE" >> /usr/src/.env.production \
-    && echo "RELEASEDATEISO=$RELEASEDATEISO" >> /usr/src/.env.production
+# Build the Next.js app
+RUN npm run build
 
-# note that this doesn't actually publish the port to the host machine; it's more of an informational guideline.
-EXPOSE 3000
-
+# Start the Next.js app
 CMD ["npm", "start"]
+
+# Expose port 3000
+EXPOSE 3000
