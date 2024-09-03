@@ -16,7 +16,6 @@ export default async (req, res) => {
     RELEASEVERSION: process.env?.RELEASEVERSION ?? "NO RELEASEVERSION",
     data: str ?? "NO_REDIS_URL",
     time: new Date().toISOString(),
-    releaseDate: releaseData,
   };
   res.status(200).json(z);
 };
