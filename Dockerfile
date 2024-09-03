@@ -1,11 +1,5 @@
 FROM node:alpine
 
-# https://github.com/hirosystems/explorer/pull/582/commits/045e01f9405d5073a914f53e796dcb0bf66c39e2
-#FROM node:16-alpine AS deps
-
-# Installing npm
-RUN npm install -g npm@9.8.1
-
 # Create app directory
 RUN mkdir -p /usr/src
 WORKDIR /usr/src
