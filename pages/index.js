@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Redis from 'ioredis'
 import { useState } from 'react'
+import Footer from '../components/Footer'
 
 let redis = new Redis(process.env.REDIS_URL);
 
@@ -37,15 +38,7 @@ export default function Home({ data }) {
         <button type="button" onClick={increment}>Manual Increment (+1)</button>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/integrations/upstash"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by <b>Vercel</b> and <b>Upstash</b>
-        </a>
-      </footer>
+      <Footer />
     </div>
   )
 }
